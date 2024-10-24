@@ -1,7 +1,7 @@
 # AMD-AutoPowerEfficiencyTest
 
 ## Introduction || 介绍
-copyright@LingYuWings || FunTech
+copyright[@LingYuWings](https://github.com/LingYuWings) || [FunTech](https://space.bilibili.com/9321359)
 
 This script is developed for automatic test of AMD CPU's power efficiency. The script developed using python, need outer tools ryzenadj and Cinebench R23 to run the test. 
 The published tool is for Windows only, it uses powershell script to run the Cinebench test and collect the data used to draw the graph of the data(output as png and svg files and saved in the graph folder).
