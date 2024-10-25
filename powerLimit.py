@@ -43,7 +43,7 @@ def read_r23_score():
             score = float(line)
             return score
     except (ValueError, FileNotFoundError) as e:
-        print(f'未能获取跑分数据: {e}')
+        print(f'Can\'t get benchmark score: {e}')
         return None
 
 def plot_graphs(csv_file):
@@ -52,8 +52,8 @@ def plot_graphs(csv_file):
     """
     # 读取数据
     data = pd.read_csv(csv_file)
-    x = data['功耗限制(W)']
-    y = data['跑分']
+    x = data['Power Limit(W)']
+    y = data['Cinebench R23 Score']
 
     # 设置图形大小和样式
     fig, ax = plt.subplots(figsize=(16, 9))
@@ -108,24 +108,30 @@ def plot_graphs(csv_file):
 
 # 添加 CSV 文件标题
 with open('overall_results.csv', 'w', encoding='utf-8') as f:
-    f.write('功耗限制(W),跑分\n')
+    f.write('PowerLimit(W),Cinebench R23 Score\n')
+
+lang= input("Please choose the language||请选择语言：\nEnglish(E)||中文(C) please enter:")
+
+if lang == "e" or lang == "E":
+    power_low=input("Please enter the minimun power of the test(W):")
+    power_high=input("Please enter the highest power of the test(W):")
+    between_p=input("Please enter the gap bewteen two tests(W):")
+elif lang == "c" or lang == "C":
+    power_low=input("请输入测试功耗最小值(W):")
+    power_high=input("请输入测试功耗最大值(W):")
+    between_p=input("请输入两次测试间隔的功耗大小(W):")
 
 # 主测试循环
-for power_limit in range(15, 70, 5):
-    print(f'设置功耗限制为 {power_limit}W')
+for power_limit in range(power_low, power_high, between_p):
+    print(f'Setting power limit to {power_limit}W')
     set_power_limit(power_limit)
     time.sleep(5)  # 等待功耗限制生效
 
-    # 如果有获取实际功耗的函数，请在此处调用
-    power_consumption = None  # 如果无法获取实际功耗，可以设置为 None 或略过
-
-    print(f'当前实际功耗: {power_consumption}W')
-
-    print('开始运行 Cinebench R23 基准测试')
+    print('Start running Cinebench R23 benchmark')
     run_r23_benchmark()
 
     score = read_r23_score()
-    print(f'R23 跑分: {score}')
+    print(f'R23 score: {score}')
 
     # 记录结果到文件
     with open('overall_results.csv', 'a', encoding='utf-8') as f:
