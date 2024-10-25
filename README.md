@@ -40,13 +40,13 @@ Once you download these tools, put them inside the folder as followed tree folde
 
 Then open the powershell to set the running environment using folloing command:
 
-Set-ExecutionPolicy -ExecutionPolicy RemoteSigned
+    Set-ExecutionPolicy -ExecutionPolicy RemoteSigned
 
 Then run the script using administrator permission, the test will run automaticlly.
 
 首先使用powershell运行以下命令：
 
-Set-ExecutionPolicy -ExecutionPolicy RemoteSigned
+    Set-ExecutionPolicy -ExecutionPolicy RemoteSigned
 
 之后使用管理员权限运行脚本的exe文件，测试会自动进行。
 
